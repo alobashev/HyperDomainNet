@@ -130,7 +130,7 @@ target_class: Fernando Botero Painting
 source_class: Photo
 target_class: Anime Painting
 ```
-5) Hulk 
+6) Hulk 
 ```
 source_class: Human
 target_class: The Hulk
