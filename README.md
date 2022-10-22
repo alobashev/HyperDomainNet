@@ -78,7 +78,7 @@ Default text request is
 source_class: Photo
 target_class: 3D Render in the Style of Pixar
 ```
-After the end of the training navigate to ./local_logged_exps/ directory. You will see folders with names "Test_000".
+After the end of the training navigate to ./local_logged_exps/ directory. You will see a folder with name "Test_000".
 Trained model will be saved in ./Test_000/models/models_139.pt
 
 To apply this trained model to edit real images run the colab notebook [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QMylWjzPxvHtxm74U4lWRQXwquw5AaFL#scrollTo=si2tLKYLT-kV) and copy model file in /content/HyperDomainNet/checkpoints/td_checkpoints/ directory.
