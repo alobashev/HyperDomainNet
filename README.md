@@ -103,7 +103,7 @@ da_model = Inferencer(da_model_ckpt, device)
 After this you can apply your new trained model.
 
 
-To reproduce results change td_single_ffhq.yaml:
+To reproduce results change /configs/td_single_ffhq.yaml:
 1) Pixar
 ```
 source_class: Photo
@@ -130,7 +130,7 @@ source_class: Photo
 target_class: Anime Painting
 ```
 Note that source_class is not limited to "Photo" or "Human". You can put any phrase that lousy describes a new domain.
-Full list of different domains could be found in in /text_domains. 
+Full list of different domains could be found in /text_domains. 
 
 
 ### Notes
