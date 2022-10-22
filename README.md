@@ -118,9 +118,9 @@ target_class: Mona Lisa Painting
 3) The Joker
 ```
 source_class: Human
-target_class: Mona Lisa Painting
+target_class: The Joker
 ```
-4) The Joker
+4) Fernando Botero
 ```
 source_class: Photo
 target_class: Fernando Botero Painting
@@ -129,6 +129,11 @@ target_class: Fernando Botero Painting
 ```
 source_class: Photo
 target_class: Anime Painting
+```
+5) Hulk 
+```
+source_class: Human
+target_class: The Hulk
 ```
 Note that source_class is not limited to "Photo" or "Human". You can put any phrase that lousy describes a new domain.
 Full list of different domains could be found in /text_domains. 
