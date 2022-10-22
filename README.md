@@ -64,6 +64,75 @@ For all the methods described in the paper, is it required to have:
 - PyTorch >=1.7.1
 - Packages from requirements.txt
 
+## How to get custom edits.
+
+```
+$ git clone https://github.com/alobashev/HyperDomainNet.git
+$ cd HyperDomainNet
+$ pip install -r requirements.txt
+$ python main.py exp.config=td_single_ffhq.yaml
+```
+You need GPU with at least 24Gb of VRAM. Training should take about 2-3 minutes.
+Default text resuest is
+```
+source_class: Photo
+target_class: 3D Render in the Style of Pixar
+```
+After the end of the training navigate to ./local_logged_exps/ directory. You will see folders with names "Test_000".
+Trained model will be saved in ./Test_000/models/models_139.pt
+
+To apply this trained model to edit real images run the colab notebook [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1QMylWjzPxvHtxm74U4lWRQXwquw5AaFL#scrollTo=si2tLKYLT-kV) and copy model file in /content/HyperDomainNet/checkpoints/td_checkpoints/ directory.
+
+In the section "Model setup and inference" of the colab change the cell with
+```
+adaptation_type = 'td' #@param ['im2im', 'td']
+target_domain = 'ukiyo-e' #@param ['pixar', 'anime', 'joker', 'neanderthal', 'sketch', 'werewolf', 'botero', 'monalisa', 'ukiyo-e', 'zombie', 'anastasia', 'mermaid', 'digital_painting_jing', 'titan_armin', 'titan_erwin']
+
+da_model_ckpt = torch.load(f'checkpoints/{adaptation_type}_checkpoints/{adaptation_type}_{target_domain}.pt', map_location='cpu')
+device = 'cuda:0'
+da_model = Inferencer(da_model_ckpt, device)
+```
+to
+```
+adaptation_type = 'td' #@param ['im2im', 'td']
+target_domain = 'botero' #@param ['pixar', 'anime', 'joker', 'neanderthal', 'sketch', 'werewolf', 'botero', 'monalisa', 'ukiyo-e', 'zombie', 'anastasia', 'mermaid', 'digital_painting_jing', 'titan_armin', 'titan_erwin']
+
+da_model_ckpt = torch.load(f'checkpoints/{adaptation_type}_checkpoints/models_139.pt')
+device = 'cuda:0'
+da_model = Inferencer(da_model_ckpt, device)
+```
+After this you can apply your new trained model.
+
+
+To reproduce results change td_single_ffhq.yaml:
+1) Pixar
+```
+source_class: Photo
+target_class: 3D Render in the Style of Pixar
+```
+2) Mona Lisa 
+```
+source_class: Photo
+target_class: Mona Lisa Painting
+```
+3) The Joker
+```
+source_class: Human
+target_class: Mona Lisa Painting
+```
+4) The Joker
+```
+source_class: Photo
+target_class: Fernando Botero Painting
+```
+5) Anime 
+```
+source_class: Photo
+target_class: Anime Painting
+```
+Note that source_class is not limited to "Photo" or "Human". You can put any phrase that lousy describes new domain.
+Full list of different domains could be found in in /text_domains. 
+
 ### Notes
 
 Here, the code relies on the [Rosinality](https://github.com/rosinality/stylegan2-pytorch/) pytorch implementation of StyleGAN2.
@@ -226,6 +295,7 @@ Given a pretrained checkpoint for certain target domain, one can be evaluated th
 Main idea is based on one-shot (text-drive, image2image) methods [StyleGAN-NADA](https://arxiv.org/abs/2108.00946) and [MindTheGap](https://arxiv.org/abs/2110.08398).
 
 To edit real images, we inverted them to the StyleGAN's latent space using [ReStyle](https://github.com/yuval-alaluf/restyle-encoder).
+
 
 ## Citation
 
