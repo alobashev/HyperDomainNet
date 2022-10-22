@@ -69,6 +69,7 @@ For all the methods described in the paper, is it required to have:
 $ git clone https://github.com/alobashev/HyperDomainNet.git
 $ cd HyperDomainNet
 $ pip install -r requirements.txt
+$ python download.py stylegan2 restyle dlib checkpoints 
 $ python main.py exp.config=td_single_ffhq.yaml
 ```
 You need a GPU with at least 24Gb of VRAM. Training should take about 2-3 minutes.
