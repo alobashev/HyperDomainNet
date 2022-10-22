@@ -64,16 +64,15 @@ For all the methods described in the paper, is it required to have:
 - PyTorch >=1.7.1
 - Packages from requirements.txt
 
-## How to get custom edits.
-
+## How to train a model for your own custom edits
 ```
 $ git clone https://github.com/alobashev/HyperDomainNet.git
 $ cd HyperDomainNet
 $ pip install -r requirements.txt
 $ python main.py exp.config=td_single_ffhq.yaml
 ```
-You need GPU with at least 24Gb of VRAM. Training should take about 2-3 minutes.
-Default text resuest is
+You need a GPU with at least 24Gb of VRAM. Training should take about 2-3 minutes.
+Default text request is
 ```
 source_class: Photo
 target_class: 3D Render in the Style of Pixar
@@ -130,8 +129,9 @@ target_class: Fernando Botero Painting
 source_class: Photo
 target_class: Anime Painting
 ```
-Note that source_class is not limited to "Photo" or "Human". You can put any phrase that lousy describes new domain.
+Note that source_class is not limited to "Photo" or "Human". You can put any phrase that lousy describes a new domain.
 Full list of different domains could be found in in /text_domains. 
+
 
 ### Notes
 
